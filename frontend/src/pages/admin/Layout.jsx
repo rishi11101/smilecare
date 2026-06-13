@@ -17,7 +17,7 @@ export default function AdminLayout() {
   const handleLogout = () => { logout(); navigate('/admin/login'); };
 
   const SidebarContent = () => (
-    <div className="flex flex-col h-full bg-white border-r border-border">
+    <div className="flex flex-col h-full bg-card border-r border-border">
       <div className="px-5 py-5 border-b border-border">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 bg-navy rounded-xl flex items-center justify-center text-sm">🦷</div>
@@ -61,7 +61,7 @@ export default function AdminLayout() {
         </div>
       )}
       <div className="flex-1 flex flex-col overflow-hidden">
-        <header className="md:hidden bg-white border-b border-border px-4 py-3 flex items-center gap-3 flex-shrink-0">
+        <header className="md:hidden bg-card border-b border-border px-4 py-3 flex items-center gap-3 flex-shrink-0">
           <button onClick={() => setSidebarOpen(true)} className="text-slate-mid p-1"><Menu size={20} /></button>
           <div className="flex items-center gap-2">
             <div className="w-7 h-7 bg-navy rounded-lg flex items-center justify-center text-xs">🦷</div>

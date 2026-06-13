@@ -5,7 +5,7 @@ import api from '../../utils/api';
 
 function StatCard({ label, value, icon, bg }) {
   return (
-    <div className="bg-white border border-border rounded-2xl p-5 hover:shadow-sm transition-shadow">
+    <div className="bg-card border border-border rounded-2xl p-5 hover:shadow-warm transition-shadow">
       <div className="flex items-start justify-between">
         <div>
           <p className="font-body text-slate-light text-sm mb-1">{label}</p>
@@ -48,11 +48,11 @@ export default function AdminDashboard() {
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-7">
         <StatCard label="Total" value={stats?.total} icon={<Calendar size={18} className="text-navy" />} bg="bg-steel-pale" />
-        <StatCard label="Today" value={stats?.today} icon={<Clock size={18} className="text-blue-600" />} bg="bg-blue-50" />
+        <StatCard label="Today" value={stats?.today} icon={<Clock size={18} className="text-steel" />} bg="bg-steel-pale" />
         <StatCard label="Pending" value={stats?.pending} icon={<AlertCircle size={18} className="text-amber-600" />} bg="bg-amber-50" />
         <StatCard label="Confirmed" value={stats?.confirmed} icon={<CheckCircle size={18} className="text-green-600" />} bg="bg-green-50" />
       </div>
-      <div className="bg-white border border-border rounded-2xl">
+      <div className="bg-card border border-border rounded-2xl">
         <div className="flex items-center justify-between px-5 py-4 border-b border-border">
           <h2 className="font-display font-700 text-slate text-base">Recent Appointments</h2>
           <Link to="/admin/appointments" className="text-sm font-body text-steel hover:underline flex items-center gap-1">View all <ArrowRight size={13} /></Link>

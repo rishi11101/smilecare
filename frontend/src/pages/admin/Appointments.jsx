@@ -48,7 +48,7 @@ export default function AdminAppointments() {
         <p className="font-body text-slate-light text-sm mt-0.5">{total} total appointments</p>
       </div>
       <div className="flex flex-wrap gap-3 mb-5">
-        <div className="flex gap-1 bg-white border border-border rounded-xl p-1 overflow-x-auto">
+        <div className="flex gap-1 bg-card border border-border rounded-xl p-1 overflow-x-auto">
           {STATUS_OPTIONS.map(s => (
             <button key={s} onClick={() => setStatusFilter(s)}
               className={`px-3 py-1.5 rounded-lg text-xs font-display font-600 capitalize transition-colors whitespace-nowrap ${statusFilter === s ? 'bg-navy text-white' : 'text-slate-mid hover:text-slate'}`}>
@@ -57,10 +57,10 @@ export default function AdminAppointments() {
           ))}
         </div>
         <input type="date" value={dateFilter} onChange={e => setDateFilter(e.target.value)}
-          className="border border-border rounded-xl px-3 py-2 text-slate font-body text-sm bg-white focus:outline-none focus:border-steel/40 transition" />
+          className="border border-border rounded-xl px-3 py-2 text-slate font-body text-sm bg-card focus:outline-none focus:border-steel/40 transition" />
         {dateFilter && <button onClick={() => setDateFilter('')} className="text-sm font-body text-slate-light hover:text-slate transition-colors">Clear</button>}
       </div>
-      <div className="bg-white border border-border rounded-2xl overflow-hidden">
+      <div className="bg-card border border-border rounded-2xl overflow-hidden">
         {loading ? (
           <div className="text-center py-12 text-slate-light text-sm">Loading appointments...</div>
         ) : appointments.length === 0 ? (

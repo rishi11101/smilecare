@@ -16,11 +16,11 @@ export default function AdminLogin() {
     finally { setLoading(false); }
   };
 
-  const inputCls = "w-full bg-white border border-border rounded-xl px-4 py-3 text-slate font-body text-sm focus:outline-none focus:border-steel/50 focus:ring-2 focus:ring-steel-pale transition placeholder-slate-muted";
+  const inputCls = "w-full bg-card border border-border rounded-xl px-4 py-3 text-slate font-body text-sm focus:outline-none focus:border-steel/50 focus:ring-2 focus:ring-steel-pale transition placeholder-slate-muted";
 
   return (
     <div className="min-h-screen bg-page flex items-center justify-center px-4">
-      <div className="bg-white border border-border rounded-2xl shadow-sm p-7 sm:p-9 w-full max-w-sm">
+      <div className="bg-card border border-border rounded-2xl shadow-warm p-7 sm:p-9 w-full max-w-sm">
         <div className="flex items-center gap-2.5 mb-7">
           <div className="w-9 h-9 bg-navy rounded-xl flex items-center justify-center text-base">🦷</div>
           <div>

@@ -49,7 +49,7 @@ export default function Navbar() {
     <>
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled_or_not_home
-          ? 'bg-white/95 backdrop-blur-sm shadow-sm border-b border-border py-3'
+          ? 'bg-card/95 backdrop-blur-sm shadow-warm border-b border-border py-3'
           : 'bg-transparent py-4'
       }`}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
@@ -103,7 +103,7 @@ export default function Navbar() {
       {/* Mobile drawer */}
       <div className={`fixed inset-0 z-40 md:hidden transition-all duration-300 ${open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
         <div className="absolute inset-0 bg-navy/40 backdrop-blur-sm" onClick={() => setOpen(false)} />
-        <div className={`absolute top-0 right-0 h-full w-72 max-w-[85vw] bg-white shadow-2xl transition-transform duration-300 ${open ? 'translate-x-0' : 'translate-x-full'}`}>
+        <div className={`absolute top-0 right-0 h-full w-72 max-w-[85vw] bg-card shadow-warm-lg transition-transform duration-300 ${open ? 'translate-x-0' : 'translate-x-full'}`}>
           <div className="flex items-center justify-between px-5 py-4 bg-navy">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center text-sm">🦷</div>

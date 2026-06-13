@@ -35,7 +35,7 @@ export default function AdminBlocked() {
 
   const upcoming = blocked.filter(b => b.date >= getToday());
   const past = blocked.filter(b => b.date < getToday());
-  const inputCls = "border border-border rounded-xl px-4 py-2.5 text-slate font-body text-sm bg-white focus:outline-none focus:border-steel/50 transition";
+  const inputCls = "border border-border rounded-xl px-4 py-2.5 text-slate font-body text-sm bg-card focus:outline-none focus:border-steel/50 transition";
 
   return (
     <div className="p-4 sm:p-6 lg:p-8">
@@ -43,7 +43,7 @@ export default function AdminBlocked() {
         <h1 className="font-display font-800 text-slate text-xl sm:text-2xl">Block Dates</h1>
         <p className="font-body text-slate-light text-sm mt-0.5">Mark holidays or days the clinic is closed</p>
       </div>
-      <div className="bg-white border border-border rounded-2xl p-5 sm:p-6 mb-6 shadow-sm">
+      <div className="bg-card border border-border rounded-2xl p-5 sm:p-6 mb-6 shadow-sm">
         <h2 className="font-display font-700 text-slate text-base mb-4">Block a Date</h2>
         {error && <div className="bg-red-50 border border-red-100 rounded-xl px-4 py-2.5 text-red-600 text-sm mb-4">{error}</div>}
         <div className="flex flex-wrap gap-3 items-end">
@@ -61,7 +61,7 @@ export default function AdminBlocked() {
         </div>
       </div>
 
-      <div className="bg-white border border-border rounded-2xl overflow-hidden mb-5">
+      <div className="bg-card border border-border rounded-2xl overflow-hidden mb-5">
         <div className="px-5 py-4 border-b border-border">
           <h2 className="font-display font-700 text-slate text-base">Upcoming Blocked Dates</h2>
         </div>
@@ -93,7 +93,7 @@ export default function AdminBlocked() {
       </div>
 
       {past.length > 0 && (
-        <div className="bg-white border border-border rounded-2xl overflow-hidden">
+        <div className="bg-card border border-border rounded-2xl overflow-hidden">
           <div className="px-5 py-4 border-b border-border">
             <h2 className="font-display font-700 text-slate-mid text-base">Past Blocked Dates ({past.length})</h2>
           </div>

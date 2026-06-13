@@ -3,7 +3,7 @@ import { Plus, Pencil, Trash2, X, Check } from 'lucide-react';
 import api from '../../utils/api';
 
 const emptyForm = { name: '', description: '', duration_minutes: 30, price: '', is_active: true };
-const inputCls = "w-full border border-border rounded-xl px-4 py-2.5 text-slate font-body text-sm focus:outline-none focus:border-steel/50 transition bg-white";
+const inputCls = "w-full border border-border rounded-xl px-4 py-2.5 text-slate font-body text-sm focus:outline-none focus:border-steel/50 transition bg-card";
 
 export default function AdminServices() {
   const [services, setServices] = useState([]);
@@ -55,7 +55,7 @@ export default function AdminServices() {
       </div>
 
       {showForm && (
-        <div className="bg-white border border-border rounded-2xl p-5 sm:p-6 mb-5 shadow-sm">
+        <div className="bg-card border border-border rounded-2xl p-5 sm:p-6 mb-5 shadow-sm">
           <div className="flex items-center justify-between mb-4">
             <h2 className="font-display font-700 text-slate text-base">{editId ? 'Edit Service' : 'Add New Service'}</h2>
             <button onClick={() => setShowForm(false)} className="text-slate-light hover:text-slate p-1"><X size={18} /></button>
@@ -96,7 +96,7 @@ export default function AdminServices() {
         </div>
       )}
 
-      <div className="bg-white border border-border rounded-2xl overflow-hidden">
+      <div className="bg-card border border-border rounded-2xl overflow-hidden">
         {loading ? (
           <div className="text-center py-12 text-slate-light text-sm">Loading services...</div>
         ) : services.length === 0 ? (

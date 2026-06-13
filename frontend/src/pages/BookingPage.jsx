@@ -40,7 +40,7 @@ function formatDate(dateStr) {
 function getToday() { return new Date().toISOString().split('T')[0]; }
 function getMaxDate() { const d = new Date(); d.setDate(d.getDate() + 90); return d.toISOString().split('T')[0]; }
 
-const inputCls = "w-full bg-white border border-border rounded-xl px-4 py-3 text-slate font-body text-sm focus:outline-none focus:border-steel/50 focus:ring-2 focus:ring-steel-pale transition placeholder-slate-muted";
+const inputCls = "w-full bg-card border border-border rounded-xl px-4 py-3 text-slate font-body text-sm focus:outline-none focus:border-steel/50 focus:ring-2 focus:ring-steel-pale transition placeholder-slate-muted";
 
 export default function BookingPage() {
   const [step, setStep] = useState(0);
@@ -85,7 +85,7 @@ export default function BookingPage() {
   if (confirmed) {
     return (
       <div className="min-h-screen bg-page flex items-center justify-center px-4 py-20">
-        <div className="bg-white border border-border rounded-3xl shadow-sm p-8 sm:p-10 max-w-md w-full text-center">
+        <div className="bg-card border border-border rounded-3xl shadow-warm p-8 sm:p-10 max-w-md w-full text-center">
           <div className="w-16 h-16 bg-green-50 border border-green-100 rounded-full flex items-center justify-center mx-auto mb-5">
             <CheckCircle size={30} className="text-green-600" />
           </div>
@@ -128,7 +128,7 @@ export default function BookingPage() {
 
         <StepIndicator current={step} />
 
-        <div className="bg-white border border-border rounded-2xl shadow-sm p-5 sm:p-7">
+        <div className="bg-card border border-border rounded-2xl shadow-warm p-5 sm:p-7">
 
           {/* STEP 0 */}
           {step === 0 && (
@@ -142,7 +142,7 @@ export default function BookingPage() {
                   {services.map(s => (
                     <button key={s.id} onClick={() => setForm(f => ({ ...f, service: s }))}
                       className={`text-left p-4 rounded-xl border-2 transition-all ${
-                        form.service?.id === s.id ? 'border-steel bg-steel-pale' : 'border-border hover:border-steel/40 bg-white'
+                        form.service?.id === s.id ? 'border-steel bg-steel-pale' : 'border-border hover:border-steel/40 bg-card'
                       }`}>
                       <div className="flex items-start justify-between gap-2 mb-1">
                         <p className="font-display font-700 text-slate text-sm">{s.name}</p>
@@ -166,7 +166,7 @@ export default function BookingPage() {
                 <label className="font-body text-slate text-sm font-500 block mb-2">Select Date</label>
                 <input type="date" value={form.date} min={getToday()} max={getMaxDate()}
                   onChange={e => setForm(f => ({ ...f, date: e.target.value }))}
-                  className="bg-white border-2 border-border rounded-xl px-4 py-3 text-slate font-body text-sm focus:outline-none focus:border-steel/50 transition w-full sm:w-auto" />
+                  className="bg-card border-2 border-border rounded-xl px-4 py-3 text-slate font-body text-sm focus:outline-none focus:border-steel/50 transition w-full sm:w-auto" />
               </div>
               {form.date && (
                 <div>

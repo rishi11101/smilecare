@@ -45,13 +45,18 @@ const faqs = [
 function FAQ({ q, a }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="border border-border rounded-xl overflow-hidden">
-      <button onClick={() => setOpen(!open)} className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left bg-card hover:bg-page transition-colors">
+    <div className="border border-border rounded-xl overflow-hidden shadow-card">
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left bg-card hover:bg-page transition-colors"
+      >
         <span className="font-display font-600 text-slate text-sm sm:text-base">{q}</span>
-        {open ? <ChevronUp size={18} className="text-steel flex-shrink-0" /> : <ChevronDown size={18} className="text-slate-light flex-shrink-0" />}
+        {open
+          ? <ChevronUp size={17} className="text-steel flex-shrink-0" />
+          : <ChevronDown size={17} className="text-slate-light flex-shrink-0" />}
       </button>
       {open && (
-        <div className="px-5 pb-4 bg-card border-t border-border">
+        <div className="px-5 pb-5 bg-card border-t border-border border-l-2 border-l-steel">
           <p className="font-body text-slate-mid text-sm leading-relaxed pt-3">{a}</p>
         </div>
       )}
@@ -78,27 +83,74 @@ export default function HomePage() {
     <div>
       {/* ── HERO ── */}
       <section id="home" className="relative min-h-screen bg-navy overflow-hidden flex items-center">
-        {/* Background layers */}
-        <div className="absolute inset-0 bg-navy-deep opacity-60 pointer-events-none" />
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full opacity-10 pointer-events-none" style={{ background: 'radial-gradient(circle, #2E6DA4 0%, transparent 65%)' }} />
-        <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full opacity-8 pointer-events-none" style={{ background: 'radial-gradient(circle, #E8A135 0%, transparent 65%)' }} />
+        {/* Depth overlay — lighter so orbs punch through */}
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(18,38,64,0.55)' }} />
+
+        {/* ── Floating orbs ──
+            Key fix: use light-tinted colors, not steel-on-navy (same hue = invisible).
+            Less blur = color stays concentrated and visible.
+            Each animation is unique so they never sync. */}
+
+        {/* Orb A — bright sky-blue, top-right, 20s */}
+        <div
+          data-orb=""
+          className="absolute rounded-full pointer-events-none"
+          style={{
+            width: 520, height: 520,
+            top: '-10%', right: '-5%',
+            background: 'radial-gradient(circle, rgba(120,185,240,0.85) 0%, rgba(80,150,220,0.50) 45%, transparent 72%)',
+            filter: 'blur(48px)',
+            willChange: 'transform',
+            animation: 'orb-drift-a 20s ease-in-out infinite',
+          }}
+        />
+
+        {/* Orb B — warm amber-gold, bottom-left, 27s */}
+        <div
+          data-orb=""
+          className="absolute rounded-full pointer-events-none"
+          style={{
+            width: 400, height: 400,
+            bottom: '-8%', left: '-5%',
+            background: 'radial-gradient(circle, rgba(0,188,212,0.82) 0%, rgba(0,150,170,0.45) 45%, transparent 72%)',
+            filter: 'blur(44px)',
+            willChange: 'transform',
+            animation: 'orb-drift-b 27s ease-in-out infinite 2s',
+          }}
+        />
+
+        {/* Orb C — softer cyan-blue, center-right, 16s */}
+        <div
+          data-orb=""
+          className="absolute rounded-full pointer-events-none"
+          style={{
+            width: 280, height: 280,
+            top: '28%', right: '18%',
+            background: 'radial-gradient(circle, rgba(100,190,230,0.78) 0%, rgba(60,155,210,0.42) 45%, transparent 72%)',
+            filter: 'blur(38px)',
+            willChange: 'transform',
+            animation: 'orb-drift-c 16s ease-in-out infinite 5s',
+          }}
+        />
 
         <div className="relative w-full max-w-6xl mx-auto px-4 sm:px-6 pt-24 pb-20 sm:pt-32 sm:pb-24">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
             {/* Left */}
             <div>
-              <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white/75 text-xs font-body px-3 py-1.5 rounded-full mb-5">
-                <span className="w-1.5 h-1.5 rounded-full bg-gold inline-block" />
-                Bangalore's trusted dental care since 2010
-              </div>
-
-              <h1 className="font-display font-800 text-white leading-[1.08] mb-5">
-                <span className="block text-4xl sm:text-5xl lg:text-[3.5rem]">Eat, Laugh &</span>
-                <span className="block text-4xl sm:text-5xl lg:text-[3.5rem]">Smile Without</span>
-                <span className="block text-4xl sm:text-5xl lg:text-[3.5rem] text-gold italic">Hesitation.</span>
+              <h1 className="font-display font-800 text-white mb-6">
+                <span className="block font-normal text-xl sm:text-2xl lg:text-[2rem] text-white tracking-wide mb-3 lg:mb-4">
+                  Eat, Laugh &
+                </span>
+                <span className="block text-[2.5rem] sm:text-[3rem] lg:text-[4.25rem] tracking-tight leading-none mb-3 lg:mb-4">
+                  Smile Without
+                </span>
+                <span className="block text-[2.6rem] sm:text-[3.5rem] lg:text-[4.75rem] text-gold italic tracking-tight leading-none">
+                  Hesitation.
+                </span>
               </h1>
 
-              <p className="font-body text-white/65 text-base sm:text-lg leading-relaxed mb-8 max-w-md">
+              <p className="font-body text-white/65 text-base sm:text-lg leading-relaxed mb-9 max-w-md">
                 Expert dental care for the whole family. Gentle, honest, and affordable. Book your appointment online in 2 minutes.
               </p>
 
@@ -112,44 +164,62 @@ export default function HomePage() {
               </div>
 
               {/* Stats */}
-              <div className="flex flex-wrap gap-5 sm:gap-8 pt-6 border-t border-white/10">
+              <div className="flex flex-wrap gap-6 sm:gap-10 pt-6 border-t border-white/10">
                 {[
                   { num: '15+', label: 'Years experience' },
                   { num: '8,000+', label: 'Patients treated' },
                   { num: '4.9★', label: 'Google rating' },
                 ].map((s, i) => (
                   <div key={i}>
-                    <p className="font-display font-800 text-white text-xl sm:text-2xl leading-none">{s.num}</p>
-                    <p className="font-body text-white/45 text-xs mt-1">{s.label}</p>
+                    <p className="font-display font-800 text-white text-2xl sm:text-3xl leading-none">{s.num}</p>
+                    <p className="font-body text-white/45 text-xs mt-1.5">{s.label}</p>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Right cards — desktop */}
-            <div className="hidden lg:flex flex-col gap-4 pt-8">
+            {/* Right cards — desktop only
+                Two-wrapper trick: outer div handles the one-shot rise entrance,
+                inner .hero-card handles the infinite float — no transform conflict. */}
+            <div className="hidden lg:flex flex-col gap-5 pt-8">
               {[
                 { icon: <Shield size={18} />, title: 'Sterilised Equipment', desc: 'Every instrument autoclaved. BDA certified facility.' },
                 { icon: <Award size={18} />, title: 'MDS Qualified Team', desc: 'Specialists in all dental procedures — implants to whitening.' },
                 { icon: <Users size={18} />, title: 'Family-Friendly', desc: 'Gentle care for children and adults. Zero anxiety approach.' },
               ].map((c, i) => (
-                <div key={i} className={`bg-white/8 border border-white/12 backdrop-blur-sm rounded-2xl p-5 flex gap-4 items-start ${i === 1 ? 'ml-8' : ''}`}>
-                  <div className="w-9 h-9 rounded-xl bg-steel/30 border border-steel/40 flex items-center justify-center text-white flex-shrink-0">
-                    {c.icon}
-                  </div>
-                  <div>
-                    <h3 className="font-display font-700 text-white text-sm mb-1">{c.title}</h3>
-                    <p className="font-body text-white/55 text-xs leading-relaxed">{c.desc}</p>
+                /* Outer: one-shot entrance slide-up */
+                <div
+                  key={i}
+                  data-card-wrap=""
+                  className={i === 1 ? 'ml-10' : ''}
+                  style={{ animation: `card-rise 0.65s ease-out ${0.3 + i * 0.18}s both` }}
+                >
+                  {/* Inner: infinite float at different speeds per card */}
+                  <div
+                    data-card-float=""
+                    className="hero-card rounded-2xl p-5 flex gap-4 items-start"
+                    style={{ animation: `card-float ${3.4 + i * 0.6}s ease-in-out ${1.2 + i * 0.2}s infinite` }}
+                  >
+                    <div className="w-9 h-9 rounded-xl flex items-center justify-center text-white flex-shrink-0"
+                      style={{ background: 'rgba(255,255,255,0.16)', border: '1px solid rgba(255,255,255,0.28)' }}>
+                      {c.icon}
+                    </div>
+                    <div>
+                      <h3 className="font-display font-700 text-white text-sm mb-1">{c.title}</h3>
+                      <p className="font-body text-white/65 text-xs leading-relaxed">{c.desc}</p>
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
+
           </div>
         </div>
 
+        {/* Wave into marquee */}
         <div className="absolute bottom-0 left-0 right-0">
           <svg viewBox="0 0 1440 55" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="w-full">
-            <path d="M0 55 L0 28 Q360 0 720 28 Q1080 55 1440 18 L1440 55 Z" fill="#1A2535" />
+            <path d="M0 55 L0 28 Q360 0 720 28 Q1080 55 1440 18 L1440 55 Z" fill="#28201A" />
           </svg>
         </div>
       </section>
@@ -164,9 +234,9 @@ export default function HomePage() {
       </div>
 
       {/* ── SERVICES ── */}
-      <section id="services" className="py-14 sm:py-20 bg-page">
+      <section id="services" className="py-16 sm:py-24 bg-page">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <RevealDiv className="mb-10 sm:mb-14">
+          <RevealDiv className="mb-12 sm:mb-16">
             <span className="font-body text-xs font-600 text-steel uppercase tracking-widest">What we treat</span>
             <h2 className="font-display font-800 text-slate text-3xl sm:text-4xl md:text-5xl mt-2 mb-3 leading-tight">Our Services</h2>
             <p className="font-body text-slate-mid text-base sm:text-lg max-w-xl">
@@ -177,7 +247,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {services.map((s, i) => (
               <RevealDiv key={s.id || i} delay={i * 60}>
-                <div className="bg-card border border-border rounded-2xl p-5 sm:p-6 hover:shadow-md hover:border-steel/30 transition-all group h-full flex flex-col">
+                <div className="bg-card border border-border rounded-2xl p-5 sm:p-6 hover:shadow-warm hover:border-steel/25 transition-all group h-full flex flex-col">
                   <div className="w-12 h-12 bg-steel-pale rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-steel group-hover:text-white transition-colors">
                     {s.icon}
                   </div>
@@ -192,7 +262,7 @@ export default function HomePage() {
             ))}
           </div>
 
-          <RevealDiv className="mt-10 text-center">
+          <RevealDiv className="mt-12 text-center">
             <Link to="/book" className="inline-flex items-center gap-2 bg-steel text-white font-display font-700 px-7 py-3.5 rounded-lg hover:bg-steel-light transition-colors">
               Book an Appointment <ArrowRight size={16} />
             </Link>
@@ -201,12 +271,13 @@ export default function HomePage() {
       </section>
 
       {/* ── ABOUT ── */}
-      <section id="about" className="py-14 sm:py-20 bg-white">
+      <section id="about" className="py-16 sm:py-24 bg-card">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <RevealDiv>
               <div className="bg-navy rounded-3xl p-6 sm:p-8 text-white relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-48 h-48 rounded-full opacity-10 pointer-events-none" style={{ background: 'radial-gradient(circle, #2E6DA4, transparent)' }} />
+                <div className="absolute top-0 right-0 w-56 h-56 rounded-full opacity-10 pointer-events-none" style={{ background: 'radial-gradient(circle, #3870A8, transparent)' }} />
+                <div className="absolute bottom-0 left-0 w-40 h-40 rounded-full opacity-[0.08] pointer-events-none" style={{ background: 'radial-gradient(circle, #D4921C, transparent)' }} />
                 <div className="relative">
                   <div className="text-5xl sm:text-6xl mb-5">🦷</div>
                   <h3 className="font-display font-800 text-2xl sm:text-3xl mb-3 leading-tight">
@@ -215,7 +286,7 @@ export default function HomePage() {
                   <p className="font-body text-white/65 text-sm leading-relaxed mb-6">
                     Dr. Arjun Mehta (MDS, Manipal) founded SmileCare in 2010 because he believed every patient deserves honest, painless, affordable dental care — without being pushed into unnecessary treatments.
                   </p>
-                  <div className="flex gap-5 pt-5 border-t border-white/10">
+                  <div className="flex gap-6 pt-5 border-t border-white/10">
                     {[{ num: '15+', label: 'Years' }, { num: '8K+', label: 'Patients' }, { num: '4.9', label: 'Rating' }].map((s, i) => (
                       <div key={i}>
                         <p className="font-display font-800 text-gold text-2xl leading-none">{s.num}</p>
@@ -261,23 +332,24 @@ export default function HomePage() {
       </section>
 
       {/* ── TESTIMONIALS ── */}
-      <section className="py-14 sm:py-20 bg-page">
+      <section className="py-16 sm:py-24 bg-page">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <RevealDiv className="mb-10 sm:mb-12">
+          <RevealDiv className="mb-10 sm:mb-14">
             <span className="font-body text-xs font-600 text-steel uppercase tracking-widest">Patient reviews</span>
             <h2 className="font-display font-800 text-slate text-3xl sm:text-4xl mt-2">What our patients say</h2>
           </RevealDiv>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {testimonials.map((t, i) => (
               <RevealDiv key={i} delay={i * 70}>
-                <div className="bg-card border border-border rounded-2xl p-5 sm:p-6 h-full flex flex-col hover:shadow-sm transition-shadow">
-                  <div className="flex gap-0.5 mb-4">
+                <div className="bg-card border border-border rounded-2xl p-5 sm:p-6 h-full flex flex-col hover:shadow-warm transition-all relative overflow-hidden">
+                  <span className="absolute top-3 right-4 font-display text-7xl text-[#E0D0BC] select-none pointer-events-none leading-none" aria-hidden="true">"</span>
+                  <div className="flex gap-0.5 mb-4 relative">
                     {[...Array(t.rating)].map((_, j) => (
                       <Star key={j} size={13} className="text-gold fill-gold" />
                     ))}
                   </div>
-                  <p className="font-body text-slate-mid text-sm leading-relaxed flex-1 mb-5">"{t.text}"</p>
-                  <div className="flex items-center gap-3 pt-4 border-t border-border">
+                  <p className="font-body text-slate-mid text-sm leading-relaxed flex-1 mb-5 relative">"{t.text}"</p>
+                  <div className="flex items-center gap-3 pt-4 border-t border-border relative">
                     <div className="w-9 h-9 rounded-full bg-navy flex items-center justify-center flex-shrink-0">
                       <span className="font-display font-700 text-white text-xs">{t.initials}</span>
                     </div>
@@ -294,9 +366,9 @@ export default function HomePage() {
       </section>
 
       {/* ── FAQ ── */}
-      <section className="py-14 sm:py-20 bg-white">
+      <section className="py-16 sm:py-24 bg-card">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
-          <RevealDiv className="text-center mb-10">
+          <RevealDiv className="text-center mb-12">
             <span className="font-body text-xs font-600 text-steel uppercase tracking-widest">Common questions</span>
             <h2 className="font-display font-800 text-slate text-3xl sm:text-4xl mt-2">Frequently Asked</h2>
           </RevealDiv>
@@ -311,9 +383,9 @@ export default function HomePage() {
       </section>
 
       {/* ── CONTACT ── */}
-      <section id="contact" className="py-14 sm:py-20 bg-page">
+      <section id="contact" className="py-16 sm:py-24 bg-page">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <RevealDiv className="mb-10 sm:mb-12">
+          <RevealDiv className="mb-10 sm:mb-14">
             <span className="font-body text-xs font-600 text-steel uppercase tracking-widest">Get in touch</span>
             <h2 className="font-display font-800 text-slate text-3xl sm:text-4xl mt-2">Find us in Bangalore</h2>
           </RevealDiv>
@@ -325,13 +397,13 @@ export default function HomePage() {
               { icon: <Star size={18} />, label: 'Rating', lines: ['4.9 / 5.0 on Google', '620+ patient reviews'] },
             ].map((item, i) => (
               <RevealDiv key={i} delay={i * 60}>
-                <div className="bg-card border border-border rounded-2xl p-5 h-full hover:shadow-sm hover:border-steel/30 transition-all">
+                <div className="bg-card border border-border rounded-2xl p-5 h-full hover:shadow-warm hover:border-steel/25 transition-all">
                   <div className="w-10 h-10 bg-navy rounded-xl flex items-center justify-center text-white mb-3 flex-shrink-0">
                     {item.icon}
                   </div>
-                  <p className="font-display font-700 text-slate text-sm mb-1">{item.label}</p>
+                  <p className="font-display font-700 text-slate text-sm mb-1.5">{item.label}</p>
                   {item.lines.map((l, j) => (
-                    <p key={j} className="font-body text-slate-mid text-sm">{l}</p>
+                    <p key={j} className="font-body text-slate-mid text-sm leading-relaxed">{l}</p>
                   ))}
                 </div>
               </RevealDiv>
@@ -340,11 +412,12 @@ export default function HomePage() {
 
           {/* CTA banner */}
           <RevealDiv className="mt-10">
-            <div className="bg-navy rounded-3xl p-8 sm:p-10 text-center relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 rounded-full opacity-10 pointer-events-none" style={{ background: 'radial-gradient(circle, #2E6DA4, transparent)' }} />
+            <div className="bg-navy rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 rounded-full opacity-10 pointer-events-none" style={{ background: 'radial-gradient(circle, #3870A8, transparent)' }} />
+              <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full opacity-[0.12] pointer-events-none" style={{ background: 'radial-gradient(circle, #D4921C, transparent)' }} />
               <div className="relative">
                 <h3 className="font-display font-800 text-white text-2xl sm:text-3xl mb-3">Stop putting it off.</h3>
-                <p className="font-body text-white/60 text-base mb-6 max-w-md mx-auto">Your teeth won't fix themselves. Book now — slots fill fast.</p>
+                <p className="font-body text-white/60 text-base mb-7 max-w-md mx-auto">Your teeth won't fix themselves. Book now — slots fill fast.</p>
                 <Link to="/book" className="inline-flex items-center gap-2 bg-gold text-slate font-display font-700 px-8 py-4 rounded-xl hover:bg-gold-light transition-colors text-base">
                   Book Your Appointment <ArrowRight size={16} />
                 </Link>
@@ -356,8 +429,8 @@ export default function HomePage() {
 
       {/* ── FOOTER ── */}
       <footer className="bg-slate text-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
             <div className="col-span-2">
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-8 h-8 bg-navy rounded-xl flex items-center justify-center text-sm">🦷</div>
@@ -368,16 +441,16 @@ export default function HomePage() {
               </p>
             </div>
             <div>
-              <h4 className="font-display font-700 text-xs uppercase tracking-widest text-white/35 mb-3">Navigate</h4>
-              <ul className="space-y-2">
+              <h4 className="font-display font-700 text-xs uppercase tracking-widest text-white/35 mb-4">Navigate</h4>
+              <ul className="space-y-2.5">
                 {['Home', 'Services', 'About', 'Contact'].map(l => (
                   <li key={l}><a href={`#${l.toLowerCase()}`} className="font-body text-sm text-white/55 hover:text-white transition-colors">{l}</a></li>
                 ))}
               </ul>
             </div>
             <div>
-              <h4 className="font-display font-700 text-xs uppercase tracking-widest text-white/35 mb-3">Contact</h4>
-              <ul className="space-y-2 font-body text-sm text-white/55">
+              <h4 className="font-display font-700 text-xs uppercase tracking-widest text-white/35 mb-4">Contact</h4>
+              <ul className="space-y-2.5 font-body text-sm text-white/55">
                 <li>14, MG Road, Bangalore</li>
                 <li>+91 98765 43210</li>
                 <li>hello@smilecare.in</li>
