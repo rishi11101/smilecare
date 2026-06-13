@@ -15,8 +15,8 @@
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   body {
     font-family: 'Inter', sans-serif;
-    background: #F7F9FC;
-    color: #1a1a2e;
+    background: #F5F7FA;
+    color: #1A2535;
     overflow-x: hidden;
     width: 100%;
   }
@@ -30,11 +30,19 @@
 
 .reveal {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: translateY(22px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
 }
+
+/* Trust marquee */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-track { animation: marquee 28s linear infinite; }
+.marquee-track:hover { animation-play-state: paused; }
